@@ -1,0 +1,4 @@
+[tool.pytest.ini_options]
+markers = [
+    "scripts: Mark slow script executions. You can deselect with '-m \"not scripts\"' ",
+]
