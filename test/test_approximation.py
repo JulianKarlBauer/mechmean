@@ -69,9 +69,7 @@ def create_random_orientations():
 
 
 def N4_from_orientations(orientations):
-    N4 = mechmean.fabric_tensors.first_kind_discrete(
-        order=4, orientations=orientations
-    )
+    N4 = mechmean.fabric_tensors.first_kind_discrete(order=4, orientations=orientations)
     return N4
 
 

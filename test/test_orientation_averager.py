@@ -6,6 +6,7 @@ import mechkit
 import mechmean
 from mechmean import material
 
+
 def test_compare_AdvaniTucker_N_D():
 
     sym = mechmean.operators.sym

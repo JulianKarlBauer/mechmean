@@ -81,9 +81,9 @@ def test_compare_Hill_Bauer_Goerthofer():
         matrix = mechkit.material.Isotropic(K=K, G=G)
         for aspect_ratio in [0.4, 1.1, 10, 100]:
             # Hill Bauer
-            P_h = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix,)
+            P_h = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
             # Hill Goerthofer
-            P_G = getPolarization_Goerthofer(aspect_ratio=aspect_ratio, matrix=matrix,)
+            P_G = getPolarization_Goerthofer(aspect_ratio=aspect_ratio, matrix=matrix)
             assert np.allclose(P_h, P_G)
 
 
@@ -96,10 +96,10 @@ def test_compare_Hill_polarization_Castaneda_Mura():
         for aspect_ratio in [10, 1.5, 0.5, 0.1]:
 
             # Mura
-            P_e = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix,)
+            P_e = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
 
             # Castaneda
-            P_h = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix,)
+            P_h = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
 
             # Compare
             print("\nK = {}\nG = {}\naspect_ratio = {}".format(K, G, aspect_ratio))
@@ -118,12 +118,8 @@ def test_Hill_spheroid_check_tolerance_sphere_Mura():
     for K, G in [(1e6, 4e5), (2000, 1000)]:
         matrix = mechkit.material.Isotropic(K=K, G=G)
         P = []
-        for aspect_ratio in [
-            1.0,
-            1.0 - tol,
-            1.0 + tol,
-        ]:
-            P_tmp = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix,)
+        for aspect_ratio in [1.0, 1.0 - tol, 1.0 + tol]:
+            P_tmp = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
             P.append(P_tmp)
         print("K=", K, "G=", G)
         print(P)
@@ -141,14 +137,8 @@ def test_Hill_spheroid_check_tolerance_sphere_Castaneda():
     for K, G in [(1e6, 4e5), (2000, 1000)]:
         matrix = mechkit.material.Isotropic(K=K, G=G)
         P = []
-        for aspect_ratio in [
-            1.0,
-            1.0 - tol,
-            1.0 + tol,
-        ]:
-            P_tmp = factory.spheroid_castaneda(
-                aspect_ratio=aspect_ratio, matrix=matrix,
-            )
+        for aspect_ratio in [1.0, 1.0 - tol, 1.0 + tol]:
+            P_tmp = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
             P.append(P_tmp)
         print("K=", K, "G=", G)
         print(P)
@@ -165,10 +155,10 @@ def test_compare_Hill_Castaneda_Mura_sphere():
         matrix = mechkit.material.Isotropic(K=K, G=G)
 
         # Mura
-        P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix,)
+        P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
 
         # Castaneda
-        P_Casta = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix,)
+        P_Casta = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
 
         # Compare
         print("\nK = {}\nG = {}\naspect_ratio = {}".format(K, G, aspect_ratio))
@@ -187,13 +177,13 @@ def test_compare_Hill_needle_as_limit_spheroid():
         matrix = mechkit.material.Isotropic(K=K, G=G)
 
         # Mura
-        P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix,)
+        P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
 
         # Castaneda
-        P_Casta = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix,)
+        P_Casta = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
 
         # Needle
-        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix,)
+        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
 
         # Compare
         assert np.allclose(P_needle_Casta, P_Mura)
@@ -205,9 +195,9 @@ def test_compare_Hill_needle_Castaneda_Ortolano():
     for K, G in [(1e6, 4e5), (1666.6, 769.3), (200, 100)]:
         matrix = mechkit.material.Isotropic(K=K, G=G)
 
-        P_Ortolano = mechmean.hill_polarization.Ortolano().needle(matrix=matrix,)
+        P_Ortolano = mechmean.hill_polarization.Ortolano().needle(matrix=matrix)
 
-        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix,)
+        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
 
         # Compare
         assert np.allclose(P_needle_Casta, P_Ortolano)
@@ -224,11 +214,11 @@ if __name__ == "__main__":
         for aspect_ratio in [1.0]:
 
             # Mura
-            P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix,)
+            P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
 
             # Castaneda
             P_Kehrer = factory.spheroid_castaneda(
-                aspect_ratio=aspect_ratio, matrix=matrix,
+                aspect_ratio=aspect_ratio, matrix=matrix
             )
 
             printQueue = [

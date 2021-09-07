@@ -10,9 +10,7 @@ from mechmean import utils
 import pprint
 
 if __name__ == "__main__":
-    np.set_printoptions(
-        linewidth=140, precision=3,
-    )
+    np.set_printoptions(linewidth=140, precision=3)
 
     inp = {
         "E_f": 73.0,
@@ -33,9 +31,9 @@ if __name__ == "__main__":
         "nu_m": 0.385,
     }
 
-    inclusion = mechkit.material.Isotropic(E=inp["E_f"], nu=inp["nu_f"],)
+    inclusion = mechkit.material.Isotropic(E=inp["E_f"], nu=inp["nu_f"])
 
-    matrix = mechkit.material.Isotropic(E=inp["E_m"], nu=inp["nu_m"],)
+    matrix = mechkit.material.Isotropic(E=inp["E_m"], nu=inp["nu_m"])
 
     averager = mechmean.orientation_averager.AdvaniTucker(N4=inp["N4"])
 
@@ -52,7 +50,7 @@ if __name__ == "__main__":
                     "volume_fraction": inp["c_f"],
                     "hill_polarization": P_func(matrix=matrix),
                 },
-                "matrix": {"material": matrix,},
+                "matrix": {"material": matrix},
             },
             "k": inp["k"],
             "averaging_func": averager.average,
@@ -65,8 +63,14 @@ if __name__ == "__main__":
     if True:
         input_dict = {
             "phases": {
-                "inclusion": {"material": inclusion, "volume_fraction": inp["c_f"],},
-                "matrix": {"material": matrix, "volume_fraction": 1.0 - inp["c_f"],},
+                "inclusion": {
+                    "material": inclusion,
+                    "volume_fraction": inp["c_f"],
+                },
+                "matrix": {
+                    "material": matrix,
+                    "volume_fraction": 1.0 - inp["c_f"],
+                },
             },
             "k": inp["k"],
             "averaging_func": averager.average,

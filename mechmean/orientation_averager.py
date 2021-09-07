@@ -72,9 +72,7 @@ class AdvaniTucker:
         self.base = self.get_base(N4)
 
     def get_base(self, N4):
-        """Calc bases of factors :math:`b_i`
-
-        """
+        """Calc bases of factors :math:`b_i`"""
         tensors = mechkit.tensors.Basic()
         I2 = tensors.I2
         I4s = tensors.I4s

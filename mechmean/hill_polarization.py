@@ -13,7 +13,7 @@ TOLERANCE_SPHERE = 1e-4
 
 
 class PConverter(object):
-    def __init__(self,):
+    def __init__(self):
         self.con = mechkit.notation.Converter()
 
     def eshelby_to_hill(self, E, matrix):
@@ -26,7 +26,7 @@ class PConverter(object):
 class Factory(object):
     """Hill polarization tensor"""
 
-    def __init__(self,):
+    def __init__(self):
         self.notation = "mandel6"
 
     def spheroid_mura(self, aspect_ratio, matrix):
@@ -66,15 +66,14 @@ class Castaneda(object):
 
     """
 
-    def __init__(self,):
+    def __init__(self):
         self.tolerance = TOLERANCE_SPHERE
 
         self.con = mechkit.notation.Converter()
         self.tensors = mechkit.tensors.Basic()
 
     def needle(self, matrix):
-        r""" [Kehrer2019]_ formula (A.7)
-        """
+        r"""[Kehrer2019]_ formula (A.7)"""
         la = matrix.la
         mu = matrix.G
 
@@ -84,10 +83,12 @@ class Castaneda(object):
         p = 1 / 2.0 * (la + 3.0 * mu) / (4.0 * (la + 2.0 * mu) * mu)
         q = 1 / 2.0 * 1.0 / (4.0 * mu)
 
-        return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r,)
+        return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r)
 
     def spheroid(
-        self, aspect_ratio, matrix,
+        self,
+        aspect_ratio,
+        matrix,
     ):
         """Calc Hills polarization tensor for spheroid combining
         appendix C of [Castaneda1997]_,
@@ -100,7 +101,7 @@ class Castaneda(object):
         kwargs = locals()
         kwargs.pop("self")
 
-        func = self._get_func_oblate_prolate_or_sphere(aspect_ratio=aspect_ratio,)
+        func = self._get_func_oblate_prolate_or_sphere(aspect_ratio=aspect_ratio)
         return func(**kwargs)
 
     def _get_func_oblate_prolate_or_sphere(self, aspect_ratio):
@@ -115,9 +116,7 @@ class Castaneda(object):
             f = self._oblate_or_prolate
         return f
 
-    def _oblate_or_prolate(
-        self, aspect_ratio, matrix,
-    ):
+    def _oblate_or_prolate(self, aspect_ratio, matrix):
         def h(a):
             """Temporary parameter depending on aspect ratio"""
             a2 = a * a
@@ -165,7 +164,7 @@ class Castaneda(object):
             + 3.0 * K * (2.0 - 3.0 * h + 2.0 * a2 - 3.0 * a2 * h)
         ) / (8.0 * term)
 
-        return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r,)
+        return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r)
 
     def _sphere(self, matrix, **kwargs):
         """[Willis1981]_ eq. (4.39)"""
@@ -205,7 +204,7 @@ class Mura(object):
 
     """
 
-    def __init__(self,):
+    def __init__(self):
         self.tolerance = TOLERANCE_SPHERE
 
     def spheroid(self, **kwargs):
@@ -221,14 +220,14 @@ class Mura(object):
         First axis is aligned in e_0 direction
         """
 
-        axes = self._axes_by_aspect_ratio(aspect_ratio=aspect_ratio,)
+        axes = self._axes_by_aspect_ratio(aspect_ratio=aspect_ratio)
 
-        function_I = self._get_function_I(aspect_ratio=aspect_ratio,)
+        function_I = self._get_function_I(aspect_ratio=aspect_ratio)
 
-        integral = function_I(axes=axes,)
+        integral = function_I(axes=axes)
 
         E = self._eshelby_by_integrals(
-            a=axes, I=integral, poisson_matrix=matrix.poisson,
+            a=axes, I=integral, poisson_matrix=matrix.poisson
         )
         return E
 
@@ -467,7 +466,7 @@ class Ortolano(object):
 
     """
 
-    def __init__(self,):
+    def __init__(self):
         self.con = mechkit.notation.Converter()
 
     def needle(self, matrix):
@@ -518,12 +517,12 @@ if __name__ == "__main__":
         for aspect_ratio in [1.0]:
 
             P_Spheroid = mechmean.hill_polarization.Factory().spheroid_mura(
-                aspect_ratio=50, matrix=matrix,
+                aspect_ratio=50, matrix=matrix
             )
 
-            P_Kehrer = mechmean.hill_polarization.Castaneda().needle(matrix=matrix,)
+            P_Kehrer = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
 
-            P_Ortolano = mechmean.hill_polarization.Ortolano().needle(matrix=matrix,)
+            P_Ortolano = mechmean.hill_polarization.Ortolano().needle(matrix=matrix)
 
             printQueue = [
                 "P_Spheroid",

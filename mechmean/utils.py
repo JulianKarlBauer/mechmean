@@ -8,6 +8,7 @@ import sys
 
 class Ex(Exception):
     """Exception wrapping all exceptions of this package"""
+
     pass
 
 
