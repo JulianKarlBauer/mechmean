@@ -32,9 +32,7 @@ class TwoPhaseComposite(object):
         \end{align*}
     """
 
-    def __init__(
-        self,
-    ):
+    def __init__(self):
         self.notation = "mandel6"
         self._I4s = mechkit.notation.Converter().to_mandel6(mechkit.tensors.Basic().I4s)
 
