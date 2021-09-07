@@ -16,12 +16,8 @@ np.set_printoptions(
 )
 
 
-def test_compare_Hill_Bauer_Goerthofer():
-    """Compare implementation of Hill polarization with implementation of
-    Goerthofer"""
-
-    def getPolarization_Goerthofer(aspect_ratio, matrix):
-        """Implementation from Johannes Goerthofer"""
+def test_compare_Hill_implementations():
+    def get_polarization_alternative_implementation(aspect_ratio, matrix):
         Km = matrix.K
         Gm = matrix.G
         ar = aspect_ratio
@@ -81,10 +77,12 @@ def test_compare_Hill_Bauer_Goerthofer():
         matrix = mechkit.material.Isotropic(K=K, G=G)
         for aspect_ratio in [0.4, 1.1, 10, 100]:
             # Hill Bauer
-            P_h = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
-            # Hill Goerthofer
-            P_G = getPolarization_Goerthofer(aspect_ratio=aspect_ratio, matrix=matrix)
-            assert np.allclose(P_h, P_G)
+            P_ref = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
+            # Hill alternative
+            P_2 = get_polarization_alternative_implementation(
+                aspect_ratio=aspect_ratio, matrix=matrix
+            )
+            assert np.allclose(P_ref, P_2)
 
 
 def test_compare_Hill_polarization_Castaneda_Mura():
