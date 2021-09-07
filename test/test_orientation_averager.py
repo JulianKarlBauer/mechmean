@@ -5,6 +5,7 @@ import numpy as np
 import mechkit
 import mechmean
 from mechmean import material
+from mechmean import orientation_averager_alternatives
 
 
 def test_compare_AdvaniTucker_N_D():
@@ -32,7 +33,9 @@ def test_compare_AdvaniTucker_N_D():
         D2 = kanatani.D2
         D4 = kanatani.D4
 
-        at_D = mechmean.orientation_averager.AdvaniTucker_kanatani_third_kind(D2, D4)
+        at_D = orientation_averager_alternatives.AdvaniTucker_in_kanatani_third_kind(
+            D2, D4
+        )
         at = mechmean.orientation_averager.AdvaniTucker(N4)
 
         av_D = at_D.average(B)
