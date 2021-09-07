@@ -201,6 +201,23 @@ def test_compare_Hill_needle_Castaneda_Ortolano():
         assert np.allclose(P_Casta, P_Ortolano)
 
 
+def test_compare_Hill_spheroid_Castaneda_Mura():
+    factory = mechmean.hill_polarization.Factory()
+    for aspect_ratio in [0.1, 0.5, 1.0, 1.5, 3, 10, 100]:
+        for K, G in [(1e6, 4e5), (1666.6, 769.3), (200, 100)]:
+            matrix = mechkit.material.Isotropic(K=K, G=G)
+
+            # Mura
+            P_Mura = factory.spheroid_mura(aspect_ratio=aspect_ratio, matrix=matrix)
+
+            # Castaneda
+            P_Casta = factory.spheroid_castaneda(
+                aspect_ratio=aspect_ratio, matrix=matrix
+            )
+
+            # Compare
+            assert np.allclose(P_Mura, P_Casta)
+
 
 if __name__ == "__main__":
 
