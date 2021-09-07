@@ -37,55 +37,60 @@ if __name__ == "__main__":
 
     averager = mechmean.orientation_averager.AdvaniTucker(N4=inp["N4"])
 
-    ###########################
-    # MTOA
+    for index in range(2):
 
-    if False:
-        P_func = mechmean.hill_polarization.Castaneda().needle
+        ###########################
+        # MTOA
 
-        input_dict = {
-            "phases": {
-                "inclusion": {
-                    "material": inclusion,
-                    "volume_fraction": inp["c_f"],
-                    "hill_polarization": P_func(matrix=matrix),
+        if index == 0:
+            P_func = mechmean.hill_polarization.Castaneda().needle
+
+            input_dict = {
+                "phases": {
+                    "inclusion": {
+                        "material": inclusion,
+                        "volume_fraction": inp["c_f"],
+                        "hill_polarization": P_func(matrix=matrix),
+                    },
+                    "matrix": {"material": matrix},
                 },
-                "matrix": {"material": matrix},
-            },
-            "k": inp["k"],
-            "averaging_func": averager.average,
-        }
+                "k": inp["k"],
+                "averaging_func": averager.average,
+            }
 
-        mori = mechmean.approximation.MoriTanakaOrientationAveraged(**input_dict)
+            mori = mechmean.approximation.MoriTanakaOrientationAveraged(**input_dict)
 
-        C_eff = mori.calc_C_eff()
+            C_eff = mori.calc_C_eff()
 
-    if True:
-        input_dict = {
-            "phases": {
-                "inclusion": {
-                    "material": inclusion,
-                    "volume_fraction": inp["c_f"],
+        ###########################
+        # Kehrer
+
+        if index == 1:
+            input_dict = {
+                "phases": {
+                    "inclusion": {
+                        "material": inclusion,
+                        "volume_fraction": inp["c_f"],
+                    },
+                    "matrix": {
+                        "material": matrix,
+                        "volume_fraction": 1.0 - inp["c_f"],
+                    },
                 },
-                "matrix": {
-                    "material": matrix,
-                    "volume_fraction": 1.0 - inp["c_f"],
-                },
-            },
-            "k": inp["k"],
-            "averaging_func": averager.average,
-        }
+                "k": inp["k"],
+                "averaging_func": averager.average,
+            }
 
-        hashin = mechmean.approximation.Kehrer2019(**input_dict)
+            hashin = mechmean.approximation.Kehrer2019(**input_dict)
 
-        C_eff = hashin.calc_C_eff()
+            C_eff = hashin.calc_C_eff()
 
-    printQueue = [
-        "C_eff",
-    ]
+        printQueue = [
+            "C_eff",
+        ]
 
-    # Print
-    for val in printQueue:
-        print(val)
-        pprint.pprint(eval(val))
-        print()
+        # Print
+        for val in printQueue:
+            print(val)
+            pprint.pprint(eval(val))
+            print()
