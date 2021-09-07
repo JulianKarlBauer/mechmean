@@ -4,7 +4,6 @@
 """
 
 import numpy as np
-from scipy.spatial.transform import Rotation
 
 from mechmean import utils
 import mechkit
