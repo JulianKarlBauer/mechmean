@@ -181,11 +181,11 @@ def test_compare_Hill_needle_as_limit_spheroid():
         P_Casta = factory.spheroid_castaneda(aspect_ratio=aspect_ratio, matrix=matrix)
 
         # Needle
-        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
+        P_needle = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
 
         # Compare
-        assert np.allclose(P_needle_Casta, P_Mura)
-        assert np.allclose(P_Casta, P_Mura)
+        assert np.allclose(P_needle, P_Mura)
+        assert np.allclose(P_needle, P_Casta)
 
 
 def test_compare_Hill_needle_Castaneda_Ortolano():
@@ -195,10 +195,11 @@ def test_compare_Hill_needle_Castaneda_Ortolano():
 
         P_Ortolano = mechmean.hill_polarization.Ortolano().needle(matrix=matrix)
 
-        P_needle_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
+        P_Casta = mechmean.hill_polarization.Castaneda().needle(matrix=matrix)
 
         # Compare
-        assert np.allclose(P_needle_Casta, P_Ortolano)
+        assert np.allclose(P_Casta, P_Ortolano)
+
 
 
 if __name__ == "__main__":
