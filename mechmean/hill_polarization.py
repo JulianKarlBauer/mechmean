@@ -85,11 +85,7 @@ class Castaneda(object):
 
         return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r)
 
-    def spheroid(
-        self,
-        aspect_ratio,
-        matrix,
-    ):
+    def spheroid(self, aspect_ratio, matrix):
         """Calc Hills polarization tensor for spheroid combining
         appendix C of [Castaneda1997]_,
         equation (4.39) [Willis1981]_,
