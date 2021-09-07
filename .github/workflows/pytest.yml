@@ -26,6 +26,9 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade setuptools
         python setup.py install
+    - name: Install pytest
+      run: |
+        pip install pytest
     - name: Run Pytest agains installation
       run: |
         pytest
