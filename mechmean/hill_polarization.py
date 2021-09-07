@@ -30,6 +30,14 @@ class Factory(object):
         """Detailed docstring"""
         return Castaneda().spheroid(aspect_ratio=aspect_ratio, matrix=matrix)
 
+    def sphere(self, matrix):
+        """Detailed docstring"""
+        return Castaneda()._sphere(matrix=matrix)
+
+    def needle(self, matrix):
+        """Detailed docstring"""
+        return Castaneda().needle(matrix=matrix)
+
 
 class Castaneda(object):
     r"""Hill polarization tensor

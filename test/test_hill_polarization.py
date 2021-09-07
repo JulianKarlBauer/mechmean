@@ -17,6 +17,41 @@ np.set_printoptions(
 )
 
 
+def test_use_factory():
+
+    factory = mechmean.hill_polarization.Factory()
+
+    K, G = (1e6, 4e5)
+    matrix = mechkit.material.Isotropic(K=K, G=G)
+
+    _ = factory.spheroid(aspect_ratio=10, matrix=matrix)
+    _ = factory.sphere(matrix=matrix)
+    _ = factory.needle(matrix=matrix)
+
+
+def test_compare_Hill_polarization_Castaneda_Mura():
+
+    factory = mechmean.hill_polarization.Factory()
+
+    for K, G in [(1e6, 4e5), (1666.6, 769.3), (200, 100)]:
+        matrix = mechkit.material.Isotropic(K=K, G=G)
+        for aspect_ratio in [10, 1.5, 0.5, 0.1]:
+
+            # Mura
+            P_Mura = hill_polarization_alternatives.Mura().spheroid(
+                aspect_ratio=aspect_ratio, matrix=matrix
+            )
+
+            # Castaneda
+            P_Casta = factory.spheroid(aspect_ratio=aspect_ratio, matrix=matrix)
+
+            # Compare
+            print("\nK = {}\nG = {}\naspect_ratio = {}".format(K, G, aspect_ratio))
+            print("P_h == P_e is", np.allclose(P_Mura, P_Casta))
+
+            assert np.allclose(P_Mura, P_Casta)
+
+
 def test_compare_Hill_implementations():
     def get_polarization_alternative_implementation(aspect_ratio, matrix):
         Km = matrix.K
@@ -84,29 +119,6 @@ def test_compare_Hill_implementations():
                 aspect_ratio=aspect_ratio, matrix=matrix
             )
             assert np.allclose(P_ref, P_2)
-
-
-def test_compare_Hill_polarization_Castaneda_Mura():
-
-    factory = mechmean.hill_polarization.Factory()
-
-    for K, G in [(1e6, 4e5), (1666.6, 769.3), (200, 100)]:
-        matrix = mechkit.material.Isotropic(K=K, G=G)
-        for aspect_ratio in [10, 1.5, 0.5, 0.1]:
-
-            # Mura
-            P_Mura = hill_polarization_alternatives.Mura().spheroid(
-                aspect_ratio=aspect_ratio, matrix=matrix
-            )
-
-            # Castaneda
-            P_Casta = factory.spheroid(aspect_ratio=aspect_ratio, matrix=matrix)
-
-            # Compare
-            print("\nK = {}\nG = {}\naspect_ratio = {}".format(K, G, aspect_ratio))
-            print("P_h == P_e is", np.allclose(P_Mura, P_Casta))
-
-            assert np.allclose(P_Mura, P_Casta)
 
 
 def test_Hill_spheroid_check_tolerance_sphere_Mura():

@@ -43,7 +43,7 @@ if __name__ == "__main__":
         # MTOA
 
         if index == 0:
-            P_func = mechmean.hill_polarization.Castaneda().needle
+            P_func = mechmean.hill_polarization.Factory().needle
 
             input_dict = {
                 "phases": {
