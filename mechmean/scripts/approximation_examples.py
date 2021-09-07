@@ -6,7 +6,6 @@
 import numpy as np
 import mechmean
 import mechkit
-from mechmean import utils
 import pprint
 
 if __name__ == "__main__":
