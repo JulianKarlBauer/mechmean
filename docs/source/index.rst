@@ -13,6 +13,6 @@ mechmean
     references
 
 
-See :cite:t:`nelson1987` for an introduction to non-standard analysis.
-Non-standard analysis is fun :cite:p:`nelson1987`.
+.. See :cite:t:`nelson1987` for an introduction to non-standard analysis.
+.. Non-standard analysis is fun :cite:p:`nelson1987`.
 

@@ -18,5 +18,5 @@ References
     KIT Scientific Publishing.
 
 
-.. bibliography::
-   :style: authoryear
+.. .. bibliography::
+..    :style: authoryear
