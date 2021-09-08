@@ -14,8 +14,21 @@ from mechmean import utils
 import pprint
 
 
+#####################################################################################
 class TwoPhaseComposite(object):
-    r"""Base class for approximations in two-phase materials.
+    def __init__(self):
+        self.notation = "mandel6"
+        self._I4s = mechkit.notation.Converter().to_mandel6(mechkit.tensors.Basic().I4s)
+
+    def calc_A_SI_from_hill_polarization(self, P_i, C_i, C_m):
+        return inv(P_i @ (C_i - C_m) + self._I4s)
+
+    def calc_C_eff_by_A_i(self, c_i, A_i, C_i, C_m):
+        return C_m + c_i * ((C_i - C_m) @ A_i)
+
+
+TwoPhaseComposite.__doc__ = r"""
+    Base class for approximations in two-phase materials.
 
     Formulations are based on average **strain localization tensors**
     mapping average strain to average strain in phase j,
@@ -32,46 +45,41 @@ class TwoPhaseComposite(object):
         \end{align*}
     """
 
-    def __init__(self):
-        self.notation = "mandel6"
-        self._I4s = mechkit.notation.Converter().to_mandel6(mechkit.tensors.Basic().I4s)
+TwoPhaseComposite.calc_A_SI_from_hill_polarization.__doc__ = r"""
+        Calc strain localization tensor in single inclusion problem.
 
-    def calc_A_SI_from_hill_polarization(self, P_i, C_i, C_m):
-        r"""Calc strain localization tensor in single inclusion problem.
+       .. math::
+           \begin{align*}
+               \mathbb{A}_{\text{i}}^{\text{SI}}
+               =
+               \left(
+                   \mathbb{P}_{\text{i}}
+                   \left(
+                       \mathbb{C}_{\text{i}}
+                       - \mathbb{C}_{\text{m}}
+                   \right)
+                   + \mathbb{I}^{\text{S}}
+               \right)^{-1}
+           \end{align*}
 
-        .. math::
-            \begin{align*}
-                \mathbb{A}_{\text{i}}^{\text{SI}}
-                =
-                \left(
-                    \mathbb{P}_{\text{i}}
-                    \left(
-                        \mathbb{C}_{\text{i}}
-                        - \mathbb{C}_{\text{m}}
-                    \right)
-                    + \mathbb{I}^{\text{S}}
-                \right)^{-1}
-            \end{align*}
+       Parameters
+       ----------
+       P_i : np.array (mandel6_4)
+           Hill polarization of inclusion.
+       C_i : np.array (mandel6_4)
+           Stiffness of inclusion.
+       C_m : np.array (mandel6_4)
+           Stiffness of matrix.
 
-        Parameters
-        ----------
-        P_i : np.array (mandel6_4)
-            Hill polarization of inclusion.
-        C_i : np.array (mandel6_4)
-            Stiffness of inclusion.
-        C_m : np.array (mandel6_4)
-            Stiffness of matrix.
+       Returns
+       -------
+       np.array (mandel6_4)
+           Strain localization in single inclusion problem.
 
-        Returns
-        -------
-        np.array (mandel6_4)
-            Strain localization in single inclusion problem.
+       """
 
-        """
-        return inv(P_i @ (C_i - C_m) + self._I4s)
-
-    def calc_C_eff_by_A_i(self, c_i, A_i, C_i, C_m):
-        r"""Calc effective stiffness of two phase material
+TwoPhaseComposite.calc_C_eff_by_A_i.__doc__ = r"""
+        Calc effective stiffness of two phase material
 
         .. math::
             \begin{align*}
@@ -104,80 +112,104 @@ class TwoPhaseComposite(object):
             Effective stiffness.
 
         """
-        return C_m + c_i * ((C_i - C_m) @ A_i)
 
 
+#####################################################################################
 class MoriTanaka(TwoPhaseComposite):
-    r"""Approximate strain localization following [Mori1973]_.
-
-    The ansatz [Gross2016]_ (equation 8.101)
-
-    .. math::
-            \begin{align*}
-                \left<\mathbb{\varepsilon}\right>_{\text{i}}
-                =
-                \mathbb{A}^{\text{SI}}
-                \left[
-                    \left< \mathbb{\varepsilon} \right>_{\text{m}}
-                \right]
-            \end{align*}
-
-    leads to
-
-    .. math::
-            \begin{align*}
-                \left<\mathbb{\varepsilon}\right>
-                &=
-                c_{\text{m}}
-                \left<\mathbb{\varepsilon}\right>_{\text{m}}
-                +
-                c_{\text{i}}
-                \left<\mathbb{\varepsilon}\right>_{\text{i}}    \\
-                &=
-                c_{\text{m}}
-                \left(\mathbb{A}^{\text{SI}}\right)^{-1}
-                \left<\mathbb{\varepsilon}\right>_{\text{i}}
-                +
-                c_{\text{i}}
-                \left<\mathbb{\varepsilon}\right>_{\text{i}}    \\
-                &=
-                \underbrace{
-                    \left(
-                        c_{\text{m}}
-                        \left(\mathbb{A}^{\text{SI}}\right)^{-1}
-                        +
-                        c_{\text{i}}
-                        \mathbb{I}^{\text{S}}
-                    \right)
-                }_{\left( \mathbb{A}_{\text{i}}^{\text{MT}} \right)^{-1}}
-                \left<\mathbb{\varepsilon}\right>_{\text{i}}
-            \end{align*}
-
-    Use :math:`\mathbb{A}_{\text{i}}^{\text{Approximated}}`
-    :math:`=\mathbb{A}_{\text{i}}^{\text{MT}}`
-    .
-
-    Note
-    ----
-        The Hill polarization of the inclusion
-        :math:`\mathbb{P}_{\text{i}}`
-        represents the geometry of the inclusion and depends on the
-        material properties of the matrix.
-
-    References
-    ----------
-
-    .. [Mori1973] Mori, T. and Tanaka, K., 1973. Average stress in matrix and
-        average elastic energy of materials with misfitting inclusions.
-        Acta metallurgica, 21(5), pp.571-574.
-
-    .. [Gross2016] Gross, D. and Seelig, T., 2016. Lineare Bruchmechanik.
-        In Bruchmechanik (pp. 69-162). Springer Vieweg, Berlin, Heidelberg.
-
-    """
-
     def __init__(self, phases, **kwargs):
-        r"""
+        self._C_i = phases["inclusion"]["material"].stiffness_mandel6
+        self._c_i = phases["inclusion"]["volume_fraction"]
+        self._P_i = phases["inclusion"]["hill_polarization"]
+        self._C_m = phases["matrix"]["material"].stiffness_mandel6
+        super().__init__()
+
+    def calc_A_MT_i(self, c_i, A_SI_i):
+        return inv((1.0 - c_i) * inv(A_SI_i) + c_i * self._I4s)
+
+    def calc_C_eff(self):
+        self.A_MT_i = self.calc_A_MT_i(c_i=self._c_i, A_SI_i=self.calc_A_SI_i())
+        self.C_eff = self.calc_C_eff_by_A_i(
+            c_i=self._c_i, A_i=self.A_MT_i, C_i=self._C_i, C_m=self._C_m
+        )
+        return self.C_eff
+
+    def calc_A_SI_i(self):
+        r"""Wrap :meth:`Approximation.calc_A_SI_from_hill_polarization`"""
+        return self.calc_A_SI_from_hill_polarization(
+            P_i=self._P_i, C_i=self._C_i, C_m=self._C_m
+        )
+
+
+MoriTanaka.__doc__ = r"""
+        Approximate strain localization following [Mori1973]_.
+
+        The ansatz [Gross2016]_ (equation 8.101)
+
+        .. math::
+                \begin{align*}
+                    \left<\mathbb{\varepsilon}\right>_{\text{i}}
+                    =
+                    \mathbb{A}^{\text{SI}}
+                    \left[
+                        \left< \mathbb{\varepsilon} \right>_{\text{m}}
+                    \right]
+                \end{align*}
+
+        leads to
+
+        .. math::
+                \begin{align*}
+                    \left<\mathbb{\varepsilon}\right>
+                    &=
+                    c_{\text{m}}
+                    \left<\mathbb{\varepsilon}\right>_{\text{m}}
+                    +
+                    c_{\text{i}}
+                    \left<\mathbb{\varepsilon}\right>_{\text{i}}    \\
+                    &=
+                    c_{\text{m}}
+                    \left(\mathbb{A}^{\text{SI}}\right)^{-1}
+                    \left<\mathbb{\varepsilon}\right>_{\text{i}}
+                    +
+                    c_{\text{i}}
+                    \left<\mathbb{\varepsilon}\right>_{\text{i}}    \\
+                    &=
+                    \underbrace{
+                        \left(
+                            c_{\text{m}}
+                            \left(\mathbb{A}^{\text{SI}}\right)^{-1}
+                            +
+                            c_{\text{i}}
+                            \mathbb{I}^{\text{S}}
+                        \right)
+                    }_{\left( \mathbb{A}_{\text{i}}^{\text{MT}} \right)^{-1}}
+                    \left<\mathbb{\varepsilon}\right>_{\text{i}}
+                \end{align*}
+
+        Use :math:`\mathbb{A}_{\text{i}}^{\text{Approximated}}`
+        :math:`=\mathbb{A}_{\text{i}}^{\text{MT}}`
+        .
+
+        Note
+        ----
+            The Hill polarization of the inclusion
+            :math:`\mathbb{P}_{\text{i}}`
+            represents the geometry of the inclusion and depends on the
+            material properties of the matrix.
+
+        References
+        ----------
+
+        .. [Mori1973] Mori, T. and Tanaka, K., 1973. Average stress in matrix and
+            average elastic energy of materials with misfitting inclusions.
+            Acta metallurgica, 21(5), pp.571-574.
+
+        .. [Gross2016] Gross, D. and Seelig, T., 2016. Lineare Bruchmechanik.
+            In Bruchmechanik (pp. 69-162). Springer Vieweg, Berlin, Heidelberg.
+
+        """
+
+MoriTanaka.__init__.__doc__ = r"""
         Parameters
         ----------
         phases : dict
@@ -191,112 +223,95 @@ class MoriTanaka(TwoPhaseComposite):
         phases['matrix']['material'] : material with .stiffness_mandel6
             Matrix material with stiffness.
         """
-        self._C_i = phases["inclusion"]["material"].stiffness_mandel6
-        self._c_i = phases["inclusion"]["volume_fraction"]
-        self._P_i = phases["inclusion"]["hill_polarization"]
-        self._C_m = phases["matrix"]["material"].stiffness_mandel6
-        super().__init__()
 
-    def calc_A_MT_i(self, c_i, A_SI_i):
-        r"""Calc strain localization by Mori-Tanaka assumption.
+MoriTanaka.__init__.calc_A_MT_i = r"""
+        Calc strain localization by Mori-Tanaka assumption.
 
-        .. math::
-            \begin{align*}
-                \mathbb{A}_{\text{i}}^{\text{MT}}
-                &=
-                \left(
-                    c_{\text{m}}
-                    \left(
-                        \mathbb{A}_{\text{i}}^{\text{SI}}
-                    \right)^{-1}
-                    +
-                    c_{\text{i}}
-                    \mathbb{I}^{\text{S}}
-                \right)^{-1}
-            \end{align*}
+       .. math::
+           \begin{align*}
+               \mathbb{A}_{\text{i}}^{\text{MT}}
+               &=
+               \left(
+                   c_{\text{m}}
+                   \left(
+                       \mathbb{A}_{\text{i}}^{\text{SI}}
+                   \right)^{-1}
+                   +
+                   c_{\text{i}}
+                   \mathbb{I}^{\text{S}}
+               \right)^{-1}
+           \end{align*}
 
-        Note
-        ----
-            See [Weng1990]_ (2.22) for a connection between
-            average strain localization tensors of the Mori-Tanaka scheme
-            and Hashin-Shtrikman-Walpole bounds, as the above equation can be
-            cast into the following form:
+       Note
+       ----
+           See [Weng1990]_ (2.22) for a connection between
+           average strain localization tensors of the Mori-Tanaka scheme
+           and Hashin-Shtrikman-Walpole bounds, as the above equation can be
+           cast into the following form:
 
-            .. math::
-                \begin{align*}
-                    \mathbb{A}_{\text{i}}^{\text{MT}}
-                    &=
-                    \mathbb{A}_{\text{i}}^{\text{SI}}
-                    \left(
-                        c_{\text{m}}
-                        \mathbb{I}^{\text{S}}
-                        +
-                        c_{\text{i}}
-                        \mathbb{A}_{\text{i}}^{\text{SI}}
-                    \right)^{-1}    \\
-                    %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-                    &=
-                    \mathbb{A}_{\text{i}}^{\text{SI}}
-                    \left(
-                        \left<
-                            \mathbb{A}^{\text{SI}}
-                        \right>
-                    \right)^{-1}  \;\;
-                        \text{with
-                        $\mathbb{A}_{\text{m}}^{\text{SI}}=\mathbb{I}$
-                        }      \\
-                \end{align*}
+           .. math::
+               \begin{align*}
+                   \mathbb{A}_{\text{i}}^{\text{MT}}
+                   &=
+                   \mathbb{A}_{\text{i}}^{\text{SI}}
+                   \left(
+                       c_{\text{m}}
+                       \mathbb{I}^{\text{S}}
+                       +
+                       c_{\text{i}}
+                       \mathbb{A}_{\text{i}}^{\text{SI}}
+                   \right)^{-1}    \\
+                   %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                   &=
+                   \mathbb{A}_{\text{i}}^{\text{SI}}
+                   \left(
+                       \left<
+                           \mathbb{A}^{\text{SI}}
+                       \right>
+                   \right)^{-1}  \;\;
+                       \text{with
+                       $\mathbb{A}_{\text{m}}^{\text{SI}}=\mathbb{I}$
+                       }      \\
+               \end{align*}
 
-            Note that
-            :math:`\mathbb{A}_{\text{i}}^{\text{SI}}
-            (P, C_{\text{i}}, C_{\text{surrounding material}}
-            )`
-            is a function of the matrix stiffness in the Mori-Tanaka context
-            and a function of the stiffness of the reference material in the
-            Hashin-Shtrikman context.
+           Note that
+           :math:`\mathbb{A}_{\text{i}}^{\text{SI}}
+           (P, C_{\text{i}}, C_{\text{surrounding material}}
+           )`
+           is a function of the matrix stiffness in the Mori-Tanaka context
+           and a function of the stiffness of the reference material in the
+           Hashin-Shtrikman context.
 
-        Parameters
-        ----------
-        c_i : float
-            Volume fraction of inclusion.
-        A_SI_i : np.array (mandel6_4)
-            Strain localization of inclusion.
+       Parameters
+       ----------
+       c_i : float
+           Volume fraction of inclusion.
+       A_SI_i : np.array (mandel6_4)
+           Strain localization of inclusion.
 
-        Returns
-        -------
-        np.array (mandel6_4)
-            Strain localization Mori-Tanaka.
+       Returns
+       -------
+       np.array (mandel6_4)
+           Strain localization Mori-Tanaka.
 
-        References
-        ----------
+       References
+       ----------
 
-        .. [Weng1990] Weng, G. J. (1990).
-            The theoretical connection between Mori-Tanaka's theory and the
-            Hashin-Shtrikman-Walpole bounds.
-            International Journal of Engineering Science, 28(11), 1111-1120.
+       .. [Weng1990] Weng, G. J. (1990).
+           The theoretical connection between Mori-Tanaka's theory and the
+           Hashin-Shtrikman-Walpole bounds.
+           International Journal of Engineering Science, 28(11), 1111-1120.
 
-        """
-        return inv((1.0 - c_i) * inv(A_SI_i) + c_i * self._I4s)
+       """
 
-    def calc_C_eff(self):
-        r"""Calc, set as attribute and return: Effective stiffness
+MoriTanaka.calc_C_eff.__doc__ = r"""
+        Calc, set as attribute and return: Effective stiffness
 
         Returns
         -------
         np.array (mandel6_4)
             Effective stiffness
         """
-        self.A_MT_i = self.calc_A_MT_i(c_i=self._c_i, A_SI_i=self.calc_A_SI_i())
-        self.C_eff = self.calc_C_eff_by_A_i(
-            c_i=self._c_i, A_i=self.A_MT_i, C_i=self._C_i, C_m=self._C_m
-        )
-        return self.C_eff
-
-    def calc_A_SI_i(self):
-        r"""Wrap :meth:`Approximation.calc_A_SI_from_hill_polarization`"""
-        return self.calc_A_SI_from_hill_polarization(
-            P_i=self._P_i, C_i=self._C_i, C_m=self._C_m
-        )
 
 
 class MoriTanakaOrientationAveraged(MoriTanaka):
