@@ -7,6 +7,7 @@ mechmean
     :maxdepth: 4
 
     hill_polarization
+    hill_polarization_alternatives
     utils
     approximation/index
     orientation_averager
