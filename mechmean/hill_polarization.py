@@ -23,44 +23,56 @@ class PConverter(object):
 
 
 class Factory(object):
-    """Factory layer for Hill polarization tensors"""
+    """Factory layer for Hill polarization tensors which uses
+    :any:`mechmean.hill_polarization.Castaneda`"""
 
     def spheroid(self, aspect_ratio, matrix):
-        """Detailed docstring"""
+        """
+        Parameters
+        ----------
+        aspect_ratio : float
+            Ratio of first half axis and remaining half axes of spheroid
+        matrix : `mechkit.material.Isotropic`
+            Isotropic matrix material
+
+        Returns
+        -------
+        np.array (mandel6_4)
+            Hill polarization tensor
+        """
         return Castaneda().spheroid(aspect_ratio=aspect_ratio, matrix=matrix)
 
     def sphere(self, matrix):
-        """Detailed docstring"""
+        """
+        Parameters
+        ----------
+        matrix : `mechkit.material.Isotropic`
+            Isotropic matrix material
+
+        Returns
+        -------
+        np.array (mandel6_4)
+            Hill polarization tensor
+        """
         return Castaneda()._sphere(matrix=matrix)
 
     def needle(self, matrix):
-        """Detailed docstring"""
+        """
+        Parameters
+        ----------
+        matrix : `mechkit.material.Isotropic`
+            Isotropic matrix material
+
+        Returns
+        -------
+        np.array (mandel6_4)
+            Hill polarization tensor
+        """
         return Castaneda().needle(matrix=matrix)
 
 
 class Castaneda(object):
-    r"""Hill polarization tensor
-
-    References
-    ----------
-
-    .. [Castaneda1997] Castaneda, P.P. and Suquet, P., 1997. Nonlinear
-        composites. In Advances in applied mechanics
-        (Vol. 34, pp. 171-302). Elsevier.
-
-    .. [Willis1981] Willis, J.R., 1981. Variational and related methods
-        for the overall properties of composites. In Advances in applied
-        mechanics (Vol. 21, pp. 1-78). Elsevier.
-
-    .. [Brylka2017] Brylka, B., Charakterisierung und Modellierung der
-        Steifigkeit von langfaserverstärktem Polypropylen. 10, (2017).
-
-    .. [Kehrer2019] Kehrer, M.L., 2019. Thermomechanical Mean-Field
-        Modeling and Experimental Characterization of Long Fiber-Reinforced
-        Sheet Molding Compound Composites (Vol. 15).
-        KIT Scientific Publishing.
-
-    """
+    r"""Hill polarization tensor"""
 
     def __init__(self):
         self.tolerance = TOLERANCE_SPHERE
@@ -82,7 +94,7 @@ class Castaneda(object):
         return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r)
 
     def spheroid(self, aspect_ratio, matrix):
-        """Calc Hills polarization tensor for spheroid combining
+        """Combination of
         appendix C of [Castaneda1997]_,
         equation (4.39) [Willis1981]_,
         formulas (2.57) and (2.58) in [Brylka2017]_.
@@ -103,7 +115,7 @@ class Castaneda(object):
         if aspect_ratio <= 1.0 - tol:
             f = self._oblate_or_prolate
         elif (1.0 - tol < aspect_ratio) and (aspect_ratio < 1.0 + tol):
-            f = self._sphere
+            f = self.sphere
         else:
             f = self._oblate_or_prolate
         return f
@@ -158,7 +170,7 @@ class Castaneda(object):
 
         return self._P_by_kmpqr(k=k, m=m, p=p, q=q, r=r)
 
-    def _sphere(self, matrix, **kwargs):
+    def sphere(self, matrix, **kwargs):
         """[Willis1981]_ eq. (4.39)"""
         K = matrix.K
         G = matrix.G
