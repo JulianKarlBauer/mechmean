@@ -8,9 +8,9 @@ mechmean
 
     hill_polarization
     hill_polarization_alternatives
-    utils
     approximation/index
     orientation_averager
+    utils
     references
 
 
