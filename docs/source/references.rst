@@ -5,10 +5,6 @@ References
     composites. In Advances in applied mechanics
     (Vol. 34, pp. 171-302). Elsevier.
 
-.. [Willis1981] Willis, J.R., 1981. Variational and related methods
-    for the overall properties of composites. In Advances in applied
-    mechanics (Vol. 21, pp. 1-78). Elsevier.
-
 .. [Brylka2017] Brylka, B., Charakterisierung und Modellierung der
     Steifigkeit von langfaserverstärktem Polypropylen. 10, (2017).
 
@@ -29,6 +25,43 @@ References
     viscoelastic inclusion reinforced composites: micro-macro modeling
     of effective properties (Doctoral dissertation, PhD thesis,
     Université catholique de Louvain, Belgium, 2007. 42).
+
+.. [Mori1973] Mori, T. and Tanaka, K., 1973. Average stress in matrix and
+    average elastic energy of materials with misfitting inclusions.
+    Acta metallurgica, 21(5), pp.571-574.
+
+.. [Gross2016] Gross, D. and Seelig, T., 2016. Lineare Bruchmechanik.
+    In Bruchmechanik (pp. 69-162). Springer Vieweg, Berlin, Heidelberg.
+
+.. [Weng1990] Weng, G. J. (1990).
+    The theoretical connection between Mori-Tanaka's theory and the
+    Hashin-Shtrikman-Walpole bounds.
+    International Journal of Engineering Science, 28(11), 1111-1120.
+
+.. [Walpole1966_I] Walpole, L. J. (1966). On bounds for the overall
+    elastic moduli of inhomogeneous systems—I.
+    Journal of the Mechanics and Physics of Solids, 14(3), 151-162.
+
+.. [Walpole1966_II] Walpole, L. J. (1966). On bounds for the overall
+    elastic moduli of inhomogeneous systems—II.
+    Journal of the Mechanics and Physics of Solids, 14(5), 289-301.
+
+.. [Fernandez2019] Fernández, M. L., & Böhlke, T. (2019).
+    Representation of Hashin–Shtrikman Bounds in Terms of Texture
+    Coefficients for Arbitrarily Anisotropic Polycrystalline Materials.
+    Journal of Elasticity, 134(1), 1-38.
+
+.. [Walpole1969] Walpole, L. J. (1969). On the overall
+    elastic moduli of composite materials.
+    Journal of the Mechanics and Physics of Solids, 17(4), 235-251.
+
+.. [Willis1977] Willis, J. R. (1977). Bounds and self-consistent
+    estimates for the overall properties of anisotropic composites.
+    Journal of the Mechanics and Physics of Solids, 25(3), 185-202.
+
+.. [Willis1981] Willis, J. R. (1981). Variational and related methods
+    for the overall properties of composites.
+    In Advances in applied mechanics (Vol. 21, pp. 1-78). Elsevier.
 
 .. .. bibliography::
 ..    :style: authoryear
