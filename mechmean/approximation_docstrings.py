@@ -577,6 +577,7 @@ docstrings = {
         tuple(np.array, np.array) with arrays of shape (mandel6_4)
             Upper and lower effective stiffness
         """,
+    #############################################################
     approx.HashinShtrikmanWalpole: r"""
         Hashin-Shtrikman scheme formulated by
         [Walpole1966_I]_, [Walpole1966_II]_
@@ -761,13 +762,15 @@ docstrings = {
         np.array (mandel6_4)
             Stress localization
         """,
+    #############################################################
     approx.HSW_VolumeFraction: r"""
-        any:`mechmean.approximation.HashinShtrikmanWalpole`
+        :any:`mechmean.approximation.HashinShtrikmanWalpole`
         with volume average calculated as weighted summation""",
+    #############################################################
     approx.HSW_SinglePhaseOrientation: r"""
-        any:`mechmean.approximation.HashinShtrikmanWalpole`
+        :any:`mechmean.approximation.HashinShtrikmanWalpole`
         with orientation average over single phase""",
-    approx.HSW_SinglePhaseOrientation: r"""
+    approx.HSW_SinglePhaseOrientation.__init__: r"""
         Parameters
         ----------
         ....
@@ -776,8 +779,10 @@ docstrings = {
             Returns orientation average of fourth order tensor given as first
             positional argument
         """,
+    #############################################################
     approx.Kehrer2019HSW: r"""
         Implementation of Kehrer2019 using class HashinShtrikmanWalpole""",
+    #############################################################
     approx.HSW2StepInterpolatedReferenceMaterial: r"""
         Based on Kehrer2019 but with interpolation parameter in both steps
         combined with the inverse scheme for singular polarizations
