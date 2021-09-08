@@ -24,7 +24,12 @@ class PConverter(object):
 
 class Factory(object):
     """Factory layer for Hill polarization tensors which uses
-    :any:`mechmean.hill_polarization.Castaneda`"""
+    :any:`mechmean.hill_polarization.Castaneda`
+
+    Alternative implementation which are based on other references are given in
+    :any:`mechmean.hill_polarization_alternatives`
+    and tested against this factory.
+    """
 
     def spheroid(self, aspect_ratio, matrix):
         """

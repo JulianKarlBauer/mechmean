@@ -24,28 +24,21 @@ class PConverter(object):
 
 class Mura(object):
     """Hill polarization tensor [Mura1987]_
-
-    References
-    ----------
-
-    .. [Mura1987] Mura, T., Micromechanics of Defects in Solids
-        (Martinus Nijhoff, Dordrecht, 1987). CrossRef zbMATH.
-
-    """
+    for details on formulas see source code doc strings"""
 
     def __init__(self):
         self.tolerance = TOLERANCE_SPHERE
 
     def spheroid(self, **kwargs):
-        """Convert Eshelby to Hill"""
+        """First axis is aligned in e_0 direction"""
 
-        E = self.spheroid_eshelby(**kwargs)
+        E = self._spheroid_eshelby(**kwargs)
+        # Convert Eshelby to Hill
         H = PConverter().eshelby_to_hill(E=E, matrix=kwargs["matrix"])
         return H
 
-    def spheroid_eshelby(self, aspect_ratio, matrix):
+    def _spheroid_eshelby(self, aspect_ratio, matrix):
         """Calc Eshelby polarization tensor
-
         First axis is aligned in e_0 direction
         """
 
@@ -92,7 +85,7 @@ class Mura(object):
         return f
 
     def _I_sphere(self, axes):
-        """Calc integrals for sphere following [Mura1987, page 79, (11.21)]
+        """Calc integrals for sphere following [Mura1987]_ page 79, (11.21)
 
         Parameters
         ----------
@@ -130,7 +123,7 @@ class Mura(object):
         return I
 
     def _I_oblate_spheroid(self, axes):
-        """Calc integrals of oblate spheroid [Mura1987, page 84, (11.28)]
+        """Calc integrals of oblate spheroid [Mura1987]_ page 84, (11.28)
 
         Parameters
         ----------
@@ -176,7 +169,7 @@ class Mura(object):
         return I
 
     def _I_prolate_spheroid(self, axes):
-        """Calc integrals of prolate spheroid [Mura1987, page 84, (11.29)]
+        """Calc integrals of prolate spheroid [Mura1987]_, page 84, (11.29)
 
         Parameters
         ----------
@@ -278,22 +271,7 @@ class Mura(object):
 
 
 class Ortolano(object):
-    """Hill polarization tensor [Ortolano2013]_, [Friebel2007]_
-
-    References
-    ----------
-
-    .. [Ortolano2013] Ortolano González, J.M., Hernández Ortega, J.A. and
-        Oliver Olivella, X., 2013. A comparative study on homogenization
-        strategies for multi-scale analysis of materials. Centre
-        Internacional de Mètodes Numèrics en Enginyeria (CIMNE).
-
-    .. [Friebel2007] Friebel, C., 2007. Mechanics and Acoustics of
-        viscoelastic inclusion reinforced composites: micro-macro modeling
-        of effective properties (Doctoral dissertation, PhD thesis,
-        Université catholique de Louvain, Belgium, 2007. 42).
-
-    """
+    """Hill polarization tensor [Ortolano2013]_, [Friebel2007]_"""
 
     def __init__(self):
         self.con = mechkit.notation.Converter()
