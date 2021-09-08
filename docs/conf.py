@@ -23,6 +23,10 @@ sys.path.insert(
     0,
     os.path.abspath(os.path.join("..")),
 )
+sys.path.insert(
+    1,
+    os.path.abspath(os.path.join(".")),
+)
 
 # print('PATH_____________PATH_____________PATH')
 # print(sys.path)
@@ -52,9 +56,30 @@ extensions = [
     "sphinx.ext.mathjax",
     "sphinx.ext.viewcode",
     "sphinx.ext.napoleon",
+    "sphinxcontrib.bibtex",
     # 'sphinx.ext.autosummary',
     # 'sphinx.ext.numpydoc',
 ]
+
+#############################################
+# Bibtex
+
+bibtex_bibfiles = [os.path.join("source", "references.bib")]
+# bibtex_reference_style = "author_year"
+# bibtex_default_style = 'alpha'
+
+# Use custom citation labels
+import custom_extensions
+from pybtex.plugin import register_plugin
+
+register_plugin(
+    "pybtex.style.labels", "authoryear", custom_extensions.AuthorYearLabelStyle
+)
+register_plugin(
+    "pybtex.style.formatting", "authoryear", custom_extensions.AuthorYearStyle
+)
+
+#############################################
 
 napoleon_custom_sections = ["Limitations"]  # , 'Returns']
 

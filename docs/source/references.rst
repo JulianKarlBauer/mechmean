@@ -16,3 +16,7 @@ References
     Modeling and Experimental Characterization of Long Fiber-Reinforced
     Sheet Molding Compound Composites (Vol. 15).
     KIT Scientific Publishing.
+
+
+.. bibliography::
+   :style: authoryear
