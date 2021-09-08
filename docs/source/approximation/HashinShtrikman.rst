@@ -12,10 +12,15 @@ Hashin-Shtrikman
     :members:
     :special-members: __init__
 
+.. autoclass:: mechmean.approximation.Kehrer2019
+    :members:
+    :special-members: __init__
+
 .. autoclass:: mechmean.approximation.Kehrer2019HSW
     :members:
     :special-members: __init__
 
-.. autoclass:: mechmean.approximation.Kehrer2019
+.. autoclass:: mechmean.approximation.HSW2StepInterpolatedReferenceMaterial
     :members:
     :special-members: __init__
+
