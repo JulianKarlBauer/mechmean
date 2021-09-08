@@ -728,7 +728,17 @@ docstrings = {
         """,
     #############################################################
     approx.Kehrer2019HSW: r"""
-        Implementation of Kehrer2019 using class HashinShtrikmanWalpole""",
+        Implementation of :any:`mechmean.approximation.Kehrer2019` using
+        :any:`mechmean.approximation.HashinShtrikmanWalpole`
+        """,
+    approx.Kehrer2019HSW.__init__: r"""
+        See
+        :any:`mechmean.approximation.Kehrer2019`
+        """,
+    approx.Kehrer2019HSW.calc_C_eff: r"""
+        See
+        :any:`mechmean.approximation.Kehrer2019`
+        """,
     #############################################################
     approx.HSW2StepInterpolatedReferenceMaterial: r"""
         Based on Kehrer2019 but with interpolation parameter in both steps

@@ -284,7 +284,6 @@ class Kehrer2019HSW(object):
     """See approximation_docstrings for docstrings"""
 
     def __init__(self, phases, averaging_func, k):
-        r"""See :class:`.Kehrer2019`"""
         self.inclusion = phases["inclusion"]["material"]
         self.volume_fraction = phases["inclusion"]["volume_fraction"]
         self.matrix = phases["matrix"]["material"]
@@ -298,7 +297,6 @@ class Kehrer2019HSW(object):
         )
 
     def calc_C_eff(self):
-        r"""See :class:`.Kehrer2019`"""
         # Step 1
 
         hashin1 = HSW_VolumeFraction(
