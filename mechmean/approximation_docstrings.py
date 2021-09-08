@@ -7,23 +7,24 @@ import mechmean.approximation as approx
 
 docstrings = {
     approx.TwoPhaseComposite: r"""
-    Base class for approximations in two-phase materials.
+        Base class for approximations of two-phase materials.
 
-    Formulations are based on average **strain localization tensors**
-    mapping average strain to average strain in phase j,
-    i.e.
+        Formulations are based on average **strain localization tensors**
+        :math:\mathbb{A}_{\text{j}}`
+        mapping the average strain to the average strain in phase j,
+        i.e.
 
-    .. math::
-        \begin{align*}
-            \left<\mathbb{\varepsilon}\right>_{\text{j}}
-            =
-            \mathbb{A}_{\text{j}}
-            \left[
-            \left<\mathbb{\varepsilon}\right>
-            \right]
-        \end{align*}
+        .. math::
+            \begin{align*}
+                \left<\mathbb{\varepsilon}\right>_{\text{j}}
+                =
+                \mathbb{A}_{\text{j}}
+                \left[
+                \left<\mathbb{\varepsilon}\right>
+                \right]
+            \end{align*}
 
-    """,
+        """,
     approx.TwoPhaseComposite.calc_A_SI_from_hill_polarization: r"""
         Calc strain localization tensor in single inclusion problem.
 
@@ -44,11 +45,11 @@ docstrings = {
         Parameters
         ----------
         P_i : np.array (mandel6_4)
-            Hill polarization of inclusion.
+            Hill polarization
         C_i : np.array (mandel6_4)
-            Stiffness of inclusion.
+            Stiffness of inclusion
         C_m : np.array (mandel6_4)
-            Stiffness of matrix.
+            Stiffness of matrix
 
         Returns
         -------
