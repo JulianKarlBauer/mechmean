@@ -59,7 +59,7 @@ class Factory(object):
         np.array (mandel6_4)
             Hill polarization tensor
         """
-        return Castaneda()._sphere(matrix=matrix)
+        return Castaneda().sphere(matrix=matrix)
 
     def needle(self, matrix):
         """
