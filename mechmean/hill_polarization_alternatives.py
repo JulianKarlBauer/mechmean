@@ -23,8 +23,8 @@ class PConverter(object):
 
 
 class Mura(object):
-    """Hill polarization tensor [Mura1987]_
-    for details on formulas see source code doc strings"""
+    """Hill polarization tensor following [Mura1987]_.
+    Detailed references are available in source code docstrings"""
 
     def __init__(self):
         self.tolerance = TOLERANCE_SPHERE

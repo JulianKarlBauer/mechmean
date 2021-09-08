@@ -23,10 +23,10 @@ class PConverter(object):
 
 
 class Factory(object):
-    """Factory layer for Hill polarization tensors which uses
+    """Factory layer for Hill polarization tensors based on
     :any:`mechmean.hill_polarization.Castaneda`
 
-    Alternative implementation which are based on other references are given in
+    Alternative implementations based on other references are given in
     :any:`mechmean.hill_polarization_alternatives`
     and tested against this factory.
     """
