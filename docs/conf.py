@@ -58,7 +58,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinxcontrib.bibtex",
     # 'sphinx.ext.autosummary',
-    # 'sphinx.ext.numpydoc',
+    # 'numpydoc',
 ]
 
 #############################################
