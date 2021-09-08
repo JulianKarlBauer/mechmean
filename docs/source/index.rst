@@ -1,13 +1,13 @@
 mechmean
-=========
+========
 
 .. automodule:: mechmean
 
 .. toctree::
     :maxdepth: 4
 
-    /source/hill_polarization
-    /source/utils
+    hill_polarization
+    utils
     approximation/index
-    /source/orientation_averager
-
+    orientation_averager
+    references
