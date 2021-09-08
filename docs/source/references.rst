@@ -63,5 +63,9 @@ References
     for the overall properties of composites.
     In Advances in applied mechanics (Vol. 21, pp. 1-78). Elsevier.
 
+.. [Benveniste1987] Benveniste, Y. (1987). A new approach to the
+    application of Mori-Tanaka's theory in composite materials.
+    Mechanics of Materials, 6(2), 147-157.
+
 .. .. bibliography::
 ..    :style: authoryear

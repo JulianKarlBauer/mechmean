@@ -138,8 +138,6 @@ docstrings = {
                     \left<\mathbb{\varepsilon}\right>_{\text{i}}
                 \end{align*}
 
-        Use :math:`\mathbb{A}_{\text{i}}^{\text{Approximated}}`
-        :math:`=\mathbb{A}_{\text{i}}^{\text{MT}}`
         .
 
         Note
@@ -155,17 +153,17 @@ docstrings = {
         ----------
         phases : dict
             Valid phases are 'inclusion' and 'matrix'.
-        phases['inclusion']['material'] : material with .stiffness_mandel6
-            Inclusion material with stiffness.
+        phases['inclusion']['material'] : mechkit.material.Isotropic
+            Inclusion material
         phases['inclusion']['volume_fraction'] : float
-            Volume fraction of inclusion.
+            Volume fraction of inclusion
         phases['inclusion']['hill_polarization'] : np.array (mandel6_4)
-            Hill polarization of inclusion.
-        phases['matrix']['material'] : material with .stiffness_mandel6
-            Matrix material with stiffness.
+            Hill polarization
+        phases['matrix']['material'] : mechkit.material.Isotropic
+            Matrix material
         """,
     approx.MoriTanaka.calc_A_MT_i: r"""
-        Calc strain localization by Mori-Tanaka assumption.
+        Calc strain localization by Mori-Tanaka assumption with
 
         .. math::
             \begin{align*}
@@ -186,7 +184,7 @@ docstrings = {
         ----
             See [Weng1990]_ (2.22) for a connection between
             average strain localization tensors of the Mori-Tanaka scheme
-            and Hashin-Shtrikman-Walpole bounds, as the above equation can be
+            and Hashin-Shtrikman-Walpole scheme, as the above equation can be
             cast into the following form:
 
             .. math::
@@ -247,10 +245,12 @@ docstrings = {
     #############################################################
     approx.MoriTanakaOrientationAveraged: r"""
         Include fiber orientation in Mori-Tanaka approximation
-        following [Brylka2017]_ equation (2.73).
+        following [Benveniste1987]_ and [Brylka2017]_ equation (2.73).
 
-        Use :math:`\mathbb{A}_{\text{i}}^{\text{Approximated}}`
-        :math:`=\left<\mathbb{A}_{\text{i}}^{\text{MT}}\right>_{\text{f}}`
+        Use
+        :math:`\left<\mathbb{A}_{\text{i}}^{\text{MT}}\right>_{\text{f}}`
+        as
+        :math:`\mathbb{A}_{\text{i}}^{\text{Approximated}}`
         with
 
         .. math::
@@ -332,7 +332,9 @@ docstrings = {
         Parameters
         ----------
         ....
-            See super class and in addition:
+            Parameters of
+            :any:`mechmean.approximation.MoriTanaka`
+            and in addition:
         averaging_func : function
             Function averaging fourth order tensor.
 
@@ -722,7 +724,9 @@ docstrings = {
         Parameters
         ----------
         ....
-            See super class and in addition:
+            Parameters of
+            :any:`mechmean.approximation.HashinShtrikmanWalpole`
+            and in addition:
         orientation_averager : callable
             Returns orientation average of fourth order tensor given as first
             positional argument

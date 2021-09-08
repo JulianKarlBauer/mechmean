@@ -22,5 +22,4 @@ Hashin-Shtrikman
 
 .. autoclass:: mechmean.approximation.HSW2StepInterpolatedReferenceMaterial
     :members:
-    :special-members: __init__
 
