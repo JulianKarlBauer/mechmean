@@ -277,7 +277,7 @@ class Ortolano(object):
         self.con = mechkit.notation.Converter()
 
     def needle(self, matrix):
-        """Spheroid with aspect_ratio == infinity
+        """Spheroid with an infite aspect_ratio
 
         Cylinders of original formulas point into z-direction.
         As the x-direction is the common symmetry axis,
