@@ -297,8 +297,8 @@ class Kehrer2019HSW(object):
         )
 
     def calc_C_eff(self):
-        # Step 1
 
+        # Step 1
         hashin1 = HSW_VolumeFraction(
             phases={
                 "i": {
@@ -365,8 +365,8 @@ class HSW2StepInterpolatedReferenceMaterial:
         )
 
     def calc_C_eff(self):
-        # Step 1
 
+        # Step 1
         hashin_1 = HSW_VolumeFraction(
             phases={
                 "i": {
