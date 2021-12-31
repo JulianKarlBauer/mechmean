@@ -1,0 +1,42 @@
+# This workflow installs Python dependencies and runs tests with a variety of Python versions
+name: Pytest the package
+
+on:
+  push:
+    # branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.9]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install package
+      run: |
+        pip install --upgrade pip
+        pip install --upgrade setuptools
+        python setup.py install
+
+    - name: Install pytest
+      run: |
+        pip install pytest
+    - name: Run Pytest against installation
+      run: |
+        pytest
+
+    - name: Install nbmake
+      run: |
+        pip install nbmake
+    - name: Run Pytest for notebooks
+      run: |
+        pytest --nbmake **/*ipynb
