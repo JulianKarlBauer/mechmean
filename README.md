@@ -69,6 +69,6 @@ The support by the [German Research Foundation (DFG)][dfg_website] is gratefully
 [url_env_python]: https://docs.python.org/3/tutorial/venv.html
 [url_env_conda]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
-url_read_the_docs_latext: https://readthedocs.org/projects/mechmean/badge/?version=latest
+[url_read_the_docs_latext]: https://readthedocs.org/projects/mechmean/badge/?version=latest
 
 <!-- https://jacobtomlinson.dev/posts/2020/versioning-and-formatting-your-python-code/ -->
