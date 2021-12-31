@@ -14,6 +14,7 @@ setuptools.setup(
     " in the context of continuum mechanics"
     " with special focus on orientation averaged homogenization",
     long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/JulianKarlBauer/mechmean/",
     packages=["mechmean"],
     package_dir={"mechmean": "mechmean"},
