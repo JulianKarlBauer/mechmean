@@ -15,9 +15,7 @@ THIS_FILES_DIR_PATH = os.path.realpath(os.path.dirname(__file__))
 def get_paths_of_scripts():
     exclude_sub_strings = ["do_not_execute"]
     plot_script_paths = glob.glob(
-        os.path.join(
-            os.path.dirname(THIS_FILES_DIR_PATH), "mechmean", "scripts", "*.py"
-        )
+        os.path.join(os.path.dirname(THIS_FILES_DIR_PATH), "examples", "*.py")
     )
     plot_script_paths_sorted = sorted(plot_script_paths)
     plot_script_paths_sorted_reduced = [
