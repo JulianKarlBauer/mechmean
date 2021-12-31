@@ -30,7 +30,8 @@ def get_paths_of_scripts():
 
 class Test_scripts:
     @pytest.mark.parametrize(
-        "path_script", get_paths_of_scripts(),
+        "path_script",
+        get_paths_of_scripts(),
     )
     def test_execute_scripts(self, path_script):
 
