@@ -6,6 +6,9 @@ setuptools.setup(
     author="Julian Karl Bauer",
     author_email="juliankarlbauer@gmx.de",
     description="mechmean",
+    long_description="This Python package contains selected mean field methods"
+    " in the context of continuum mechanics"
+    " with special focus on orientation averaged homogenization",
     url="https://github.com/JulianKarlBauer/mechmean/",
     packages=["mechmean"],
     package_dir={"mechmean": "mechmean"},
