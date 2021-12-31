@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="mechmean",
-    version="0.0.1",
+    version="0.0.2",
     author="Julian Karl Bauer",
     author_email="juliankarlbauer@gmx.de",
     description="mechmean",
