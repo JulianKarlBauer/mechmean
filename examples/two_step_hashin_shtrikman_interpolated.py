@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import mechmean
 import mechkit
-from input import inp
+from mechmean.example_input import inp
 
 # Define isotropic constituents
 inclusion = mechkit.material.Isotropic(E=inp["E_f"], nu=inp["nu_f"])
@@ -24,10 +24,10 @@ input_dict = {
             "volume_fraction": 1.0 - inp["c_f"],
         },
     },
-    "k": inp["k"],
+    "k": 1.0 / 2.0,
     "averaging_func": averager.average,
 }
 hashin = mechmean.approximation.Kehrer2019(**input_dict)
 C_eff = hashin.calc_C_eff()
 
-print("Effective stiffness Kehrer2019", C_eff)
+print("Effective stiffness two step Hashin Shtrikman", C_eff)

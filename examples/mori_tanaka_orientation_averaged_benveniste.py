@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import mechmean
 import mechkit
-from input import inp
+from mechmean.example_input import inp
 
 # Define isotropic constituents
 inclusion = mechkit.material.Isotropic(E=inp["E_f"], nu=inp["nu_f"])
@@ -22,7 +22,6 @@ input_dict = {
         },
         "matrix": {"material": matrix},
     },
-    "k": inp["k"],
     "averaging_func": averager.average,
 }
 mori = mechmean.approximation.MoriTanakaOrientationAveragedBenveniste(**input_dict)
