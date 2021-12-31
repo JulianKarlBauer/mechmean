@@ -1,5 +1,6 @@
 [![DOI](https://zenodo.org/badge/403947937.svg)][url_latest_doi]
 [![PyPI version](https://badge.fury.io/py/mechmean.svg)](https://badge.fury.io/py/mechmean)
+[![Documentation status][url_read_the_docs_latext]][url_read_the_docs_latext]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JulianKarlBauer/mechmean/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -68,5 +69,6 @@ The support by the [German Research Foundation (DFG)][dfg_website] is gratefully
 [url_env_python]: https://docs.python.org/3/tutorial/venv.html
 [url_env_conda]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
+url_read_the_docs_latext: https://readthedocs.org/projects/mechmean/badge/?version=latest
 
 <!-- https://jacobtomlinson.dev/posts/2020/versioning-and-formatting-your-python-code/ -->
