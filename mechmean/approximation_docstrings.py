@@ -243,7 +243,7 @@ docstrings = {
 
         """,
     #############################################################
-    approx.MoriTanakaOrientationAveraged: r"""
+    approx.MoriTanakaOrientationAveragedBenveniste: r"""
         Include fiber orientation in Mori-Tanaka approximation
         following [Benveniste1987]_ and [Brylka2017]_ equation (2.73).
 
@@ -318,7 +318,7 @@ docstrings = {
                 'averaging_func': averager.average,
                 }
 
-        >>> mori = mechmean.approximation.MoriTanakaOrientationAveraged(**input_dict)
+        >>> mori = mechmean.approximation.MoriTanakaOrientationAveragedBenveniste(**input_dict)
         >>> C_eff = mori.calc_C_eff()
         [[ 1.479e+01,  7.000e+00,  5.045e+00, -3.118e-02, -2.842e-01,  4.863e-01],
          [ 7.000e+00,  1.251e+01,  5.057e+00, -2.973e-02, -7.226e-02,  4.390e-01],
@@ -328,7 +328,7 @@ docstrings = {
          [ 4.863e-01,  4.390e-01, -2.303e-02, -1.239e-01, -4.843e-02,  8.386e+00]])
 
         """,
-    approx.MoriTanakaOrientationAveraged.__init__: r"""
+    approx.MoriTanakaOrientationAveragedBenveniste.__init__: r"""
         Parameters
         ----------
         ....
@@ -339,7 +339,7 @@ docstrings = {
             Function averaging fourth order tensor.
 
         """,
-    approx.MoriTanakaOrientationAveraged.calc_A_SI_i: r"""
+    approx.MoriTanakaOrientationAveragedBenveniste.calc_A_SI_i: r"""
         Some orientation averaging schemes are restricted to quantities
         with transversal isotropic material symmetry.
         :math:`\mathbb{A}_{\text{i}}^{\text{SI}}`

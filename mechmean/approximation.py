@@ -59,7 +59,7 @@ class MoriTanaka(TwoPhaseComposite):
         )
 
 
-class MoriTanakaOrientationAveraged(MoriTanaka):
+class MoriTanakaOrientationAveragedBenveniste(MoriTanaka):
     """See approximation_docstrings for docstrings"""
 
     def __init__(self, **kwargs):

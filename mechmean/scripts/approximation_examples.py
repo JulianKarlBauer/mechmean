@@ -55,7 +55,7 @@ input_dict = {
     "averaging_func": averager.average,
 }
 
-mori = mechmean.approximation.MoriTanakaOrientationAveraged(**input_dict)
+mori = mechmean.approximation.MoriTanakaOrientationAveragedBenveniste(**input_dict)
 
 C_eff = mori.calc_C_eff()
 
