@@ -39,18 +39,6 @@ class AdvaniTucker_in_kanatani_third_kind(mechmean.orientation_averager.AdvaniTu
         base = np.zeros((5, 3, 3, 3, 3))
         base[0, :] = 8.0 / 315.0 * D4 + 4.0 / 35.0 * sym(I_dyad_D) + 3.0 / 5.0 * sym(P1)
 
-        # print('8./315*D4')
-        # print(con.to_mandel6(8./315*D4))
-        #
-        # print('4./35.*sym(I_dyad_D)')
-        # print(con.to_mandel6(4./35.*sym(I_dyad_D)))
-        #
-        # print('4./35.*I_dyad_D')
-        # print(con.to_mandel6(4./35.*I_dyad_D))
-        #
-        # print('3./5.*P1')
-        # print(con.to_mandel6(3./5.*P1))
-
         base[1, :] = 2.0 / 15.0 * (D_dyad_I + I_dyad_D) + 2.0 * P1
 
         base[2, :] = (
