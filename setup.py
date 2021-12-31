@@ -1,14 +1,19 @@
 import setuptools
+from os import path
+
+this_directory = path.abspath(path.dirname(__file__))
+with open(path.join(this_directory, "README.md"), encoding="utf-8") as f:
+    long_description = f.read()
 
 setuptools.setup(
     name="mechmean",
     version="0.0.2",
     author="Julian Karl Bauer",
     author_email="juliankarlbauer@gmx.de",
-    description="mechmean",
-    long_description="This Python package contains selected mean field methods"
+    description="Mechmean contains selected mean field methods"
     " in the context of continuum mechanics"
     " with special focus on orientation averaged homogenization",
+    long_description=long_description,
     url="https://github.com/JulianKarlBauer/mechmean/",
     packages=["mechmean"],
     package_dir={"mechmean": "mechmean"},
