@@ -40,6 +40,10 @@ and cite the latest [Zenodo-DOI][url_latest_doi]
 
 ## Installation
 
+Please see [![PyPI version](https://badge.fury.io/py/mechmean.svg)](https://badge.fury.io/py/mechmean)
+
+or install without `pip`
+
 - [Clone][url_how_to_clone] this repository to your machine
 - Open a terminal and navigate to your local clone
 - Install the package from the local clone into the current [env][url_env_python]i[ronment][url_env_conda] in develop mode:
