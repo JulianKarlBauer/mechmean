@@ -3,7 +3,7 @@ name: Pytest the package
 
 on:
   push:
-    branches: [ main ]
+    # branches: [ main ]
   pull_request:
     branches: [ main ]
 
@@ -26,9 +26,17 @@ jobs:
         pip install --upgrade pip
         pip install --upgrade setuptools
         python setup.py install
+
     - name: Install pytest
       run: |
         pip install pytest
-    - name: Run Pytest agains installation
+    - name: Run Pytest against installation
       run: |
         pytest
+
+    - name: Install nbmake
+      run: |
+        pip install nbmake
+    - name: Run Pytest for notebooks
+      run: |
+        pytest --nbmake **/*ipynb
