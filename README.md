@@ -2,7 +2,7 @@
 [![DOI](https://zenodo.org/badge/403947937.svg)](https://zenodo.org/badge/latestdoi/403947937)
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JulianKarlBauer/?/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JulianKarlBauer/mechmean/HEAD)
 
 <!-- <p align="center">
   <a href="https://github.com/JulianKarlBauer/?">
