@@ -1,4 +1,4 @@
-name: mechmean_private
+name: mechmean
 channels:
   - defaults
 dependencies:
@@ -87,4 +87,4 @@ dependencies:
     - mechkit==0.2.6
     - numpy==1.21.2
     - scipy==1.7.1
-prefix: /home/julian/miniconda3/envs/mechmean_private
+prefix: /home/julian/miniconda3/envs/mechmean
