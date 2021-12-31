@@ -1,9 +1,10 @@
-[![DOI](https://zenodo.org/badge/403947937.svg)][url_latest_doi]
 [![PyPI version](https://badge.fury.io/py/mechmean.svg)](https://badge.fury.io/py/mechmean)
 [![Documentation status][url_read_the_docs_latext]][url_read_the_docs_latext]
+[![DOI](https://zenodo.org/badge/403947937.svg)][url_latest_doi]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JulianKarlBauer/mechmean/HEAD)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/JulianKarlBauer/mechmean/HEAD)
+
 
 
 <!-- <p align="center">
