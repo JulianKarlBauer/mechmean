@@ -25,6 +25,11 @@ and is utilied , e.g., in
 }
 ``` -->
 
+The implementation is oriented as close as possible to the cited references
+and no emphasis is placed on run time optimization.
+Therefore, this package should be considered as a reference implementation
+which can be used to cross-validate performance-optimized implementation.
+
 Please see [license][url_license],
 [acknowledgment](#acknowledgment)
 and cite the latest [Zenodo-DOI][url_latest_doi]
