@@ -416,5 +416,3 @@ class HSW2StepInterpolatedReferenceMaterial:
         instance.stiffness_mandel6 = stiffness
 
         return instance
-
-

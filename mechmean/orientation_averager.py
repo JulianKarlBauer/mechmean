@@ -5,7 +5,6 @@
 
 import numpy as np
 import mechkit
-import mechmean
 
 
 class AdvaniTucker:
