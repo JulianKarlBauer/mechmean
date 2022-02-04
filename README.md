@@ -46,6 +46,8 @@ Install with `pip` following instructions on [Python Package Index][url_pypi_thi
 pip install mechmean
 ```
 
+**or** install from local files
+
 - [Clone][url_how_to_clone] this repository to your machine
 - Open a terminal and navigate to your local clone
 - Install the package from the local clone into the current [env][url_env_python]i[ronment][url_env_conda] in develop mode:
