@@ -1,4 +1,4 @@
-[![PyPI version](https://badge.fury.io/py/mechmean.svg)](https://badge.fury.io/py/mechmean)
+[![PyPI version](https://badge.fury.io/py/mechmean.svg)][url_pypi_this_package]
 [![Documentation status](https://readthedocs.org/projects/mechmean/badge/?version=latest)][url_read_the_docs_latext]
 [![DOI](https://zenodo.org/badge/403947937.svg)][url_latest_doi]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
@@ -38,11 +38,13 @@ Please see [license][url_license],
 and cite the latest [Zenodo-DOI][url_latest_doi]
 <!-- and the [paper given above][url_article]. -->
 
-## Installation
+## Installation [![PyPI version](https://badge.fury.io/py/mechkit.svg)][url_pypi_this_package]
 
-Please see [![PyPI version](https://badge.fury.io/py/mechmean.svg)](https://badge.fury.io/py/mechmean)
+Install with `pip` following instructions on [Python Package Index][url_pypi_this_package], i.e.,
 
-or install without `pip`
+```bash 
+pip install mechmean
+```
 
 - [Clone][url_how_to_clone] this repository to your machine
 - Open a terminal and navigate to your local clone
@@ -75,5 +77,6 @@ The support by the [German Research Foundation (DFG)][dfg_website] is gratefully
 [url_env_conda]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
 [url_read_the_docs_latext]: https://mechmean.readthedocs.io/en/latest/
+[url_pypi_this_package]: https://pypi.org/project/mechmean/
 
 <!-- https://jacobtomlinson.dev/posts/2020/versioning-and-formatting-your-python-code/ -->
