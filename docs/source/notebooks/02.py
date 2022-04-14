@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# # Two-step Hashin-Shtrikman interpolated once
+
 import numpy as np
 import mechmean
 import mechkit
