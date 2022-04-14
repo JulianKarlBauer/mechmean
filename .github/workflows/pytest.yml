@@ -39,4 +39,4 @@ jobs:
         pip install nbmake
     - name: Run Pytest for notebooks
       run: |
-        pytest --nbmake **/*ipynb
+        pytest --nbmake docs/source/notebooks/*ipynb
