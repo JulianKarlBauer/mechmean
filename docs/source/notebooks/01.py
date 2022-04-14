@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+# # Mori-Tanaka orientation-averaging following Benveniste
+
 import numpy as np
 import mechmean
 import mechkit
@@ -21,18 +21,14 @@ input_dict = {
         "inclusion": {
             "material": inclusion,
             "volume_fraction": inp["c_f"],
+            "hill_polarization": P_func(matrix=matrix),
         },
-        "matrix": {
-            "material": matrix,
-            "volume_fraction": 1.0 - inp["c_f"],
-        },
+        "matrix": {"material": matrix},
     },
-    "k1": 1.0 / 2.0,
-    "k2": 1.0 / 2.0,
     "averaging_func": averager.average,
 }
-hashin = mechmean.approximation.HSW2StepInterpolatedReferenceMaterial(**input_dict)
-C_eff = hashin.calc_C_eff()
+mori = mechmean.approximation.MoriTanakaOrientationAveragedBenveniste(**input_dict)
+C_eff = mori.calc_C_eff()
 
-print("Effective stiffness Hashin Shtrikman two step with two interpolations")
+print("Effective stiffness Mori-Tanaka orientation averaged Benveniste")
 print(C_eff)

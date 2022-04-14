@@ -1,2 +1,8 @@
 pybtex
 sphinxcontrib-bibtex
+numpydoc
+ipykernel
+nbsphinx
+sympy
+mechkit
+matplotlib
