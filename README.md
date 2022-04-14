@@ -1,5 +1,5 @@
 [![PyPI version](https://badge.fury.io/py/mechmean.svg)][url_pypi_this_package]
-[![Documentation status](https://readthedocs.org/projects/mechmean/badge/?version=latest)][url_read_the_docs_latext]
+[![Documentation status](https://readthedocs.org/projects/mechmean/badge/?version=latest)][url_read_the_docs_latest]
 [![DOI](https://zenodo.org/badge/403947937.svg)][url_latest_doi]
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -42,7 +42,7 @@ and cite the latest [Zenodo-DOI][url_latest_doi]
 
 Install with `pip` following instructions on [Python Package Index][url_pypi_this_package], i.e.,
 
-```bash 
+```bash
 pip install mechmean
 ```
 
@@ -59,7 +59,7 @@ Note: [Develop vs. install](https://stackoverflow.com/a/19048754/8935243)
 
 ## Examples
 
-Both example notebooks and example scripts are given [here](examples/).
+Both example notebooks and example scripts are rendered [here][url_read_the_docs_latest_notebooks] and given as source [here](docs/source/notebooks).
 
 ## Acknowledgment
 
@@ -78,7 +78,8 @@ The support by the [German Research Foundation (DFG)][dfg_website] is gratefully
 [url_env_python]: https://docs.python.org/3/tutorial/venv.html
 [url_env_conda]: https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
 
-[url_read_the_docs_latext]: https://mechmean.readthedocs.io/en/latest/
+[url_read_the_docs_latest]: https://mechmean.readthedocs.io/en/latest/
+[url_read_the_docs_latest_notebooks]: https://mechmean.readthedocs.io/en/latest/source/example_notebooks.html
 [url_pypi_this_package]: https://pypi.org/project/mechmean/
 
 <!-- https://jacobtomlinson.dev/posts/2020/versioning-and-formatting-your-python-code/ -->
