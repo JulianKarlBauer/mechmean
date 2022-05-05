@@ -38,7 +38,7 @@ Please see [license][url_license],
 and cite the latest [Zenodo-DOI][url_latest_doi]
 <!-- and the [paper given above][url_article]. -->
 
-## Installation [![PyPI version](https://badge.fury.io/py/mechkit.svg)][url_pypi_this_package]
+## Installation [![PyPI version](https://badge.fury.io/py/mechmean.svg)][url_pypi_this_package]
 
 Install with `pip` following instructions on [Python Package Index][url_pypi_this_package], i.e.,
 
