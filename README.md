@@ -17,7 +17,7 @@
 
 This Python package contains selected mean field methods
 in the context of continuum mechanics
-with special focus on orientation averaged homogenization
+with special focus on orientation averaging homogenization
 <!--
 and is utilied , e.g., in
 ```bibtex
