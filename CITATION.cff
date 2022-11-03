@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite it as below."
+message: "Mean field homogenization in the context of continuum mechanics with special focus on orientation averaging homogenization"
 authors:
 - family-names: "Bauer"
   given-names: "Julian Karl"
